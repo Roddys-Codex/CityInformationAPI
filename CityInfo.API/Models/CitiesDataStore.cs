@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using CityInfo.API.Models;
 
 namespace CityInfo.API
@@ -7,7 +6,7 @@ namespace CityInfo.API
     {
         public List<CityDto> Cities { get; set; }
 
-        public static CitiesDataStore Current { get; } = new CitiesDataStore();
+        // public static CitiesDataStore Current { get; } = new CitiesDataStore();
         
         // ReSharper disable All
         public CitiesDataStore()

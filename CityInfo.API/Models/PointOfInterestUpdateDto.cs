@@ -4,7 +4,7 @@ namespace CityInfo.API.Models
 {
     public class PointOfInterestUpdateDto
     {
-        [Required()]
+        [Required]
         public string Name { get; set;} = string.Empty;
         
         public string? Description { get; set;} 

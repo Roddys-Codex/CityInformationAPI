@@ -17,6 +17,20 @@ namespace CityInfo.API.Services
         {
             return await _CityInfoContext.Cities.OrderBy(c => c.Name).ToListAsync();
         }
+        
+        public async Task<IEnumerable<City>> GetCitiesAsync(string? name)
+        {
+             if(string.IsNullOrEmpty(name))
+             {
+                 return await GetCitiesAsync();
+             }
+             name = name.Trim();
+             
+             return await _CityInfoContext.Cities
+                 .Where(c => c.Name==name)
+                 .OrderBy(c => c.Name)
+                 .ToListAsync();
+        }
 
         public async Task<City?> GetCityAsync(int cityId, bool includePointsOfInterest )
         {
@@ -64,6 +78,11 @@ namespace CityInfo.API.Services
         public async Task<bool> SaveChangesAsync()
         {
             return (await _CityInfoContext.SaveChangesAsync() >= 0);
+        }
+
+        public void DeletePointOfInterest(PointOfInterest pointOfInterest)
+        {
+            _CityInfoContext.PointOfInterests.Remove(pointOfInterest);
         }
     }    
 }
